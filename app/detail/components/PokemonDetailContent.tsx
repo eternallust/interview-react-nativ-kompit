@@ -53,27 +53,25 @@ const PokemonDetailContent = ({ data, id }: Props) => {
 
   return (
     <View style={styles.detailsContainer}>
-      <View>
-        <Text style={styles.sectionTitle}>Sprite</Text>
-        <View style={styles.spriteContainer}>
-          {spritesDataUrls.map((sprite, index) => (
-            <SpriteCard uri={String(sprite)} key={index} />
-          ))}
-        </View>
-        <Text style={styles.sectionTitle}>Abilities</Text>
-        <View style={styles.abilitiesContainer}>
-          {data?.abilities.map((ability, index) => (
-            <AbilityBadge
-              key={index}
-              abilityName={ability.ability.name}
-              backgroundColor={
-                POKEMON_TYPE_COLORS[String(data?.types[0].type.name)]
-              }
-            />
-          ))}
-        </View>
+      <Text style={styles.sectionTitle}>Sprite</Text>
+      <View style={styles.spriteContainer}>
+        {spritesDataUrls.map((sprite, index) => (
+          <SpriteCard uri={String(sprite)} key={index} />
+        ))}
       </View>
-      <View style={{ flex: 1, position: "relative" }}>
+      <Text style={styles.sectionTitle}>Abilities</Text>
+      <View style={styles.abilitiesContainer}>
+        {data?.abilities.map((ability, index) => (
+          <AbilityBadge
+            key={index}
+            abilityName={ability.ability.name}
+            backgroundColor={
+              POKEMON_TYPE_COLORS[String(data?.types[0].type.name)]
+            }
+          />
+        ))}
+      </View>
+      <View>
         <TouchableOpacity
           onPress={handleFavorite}
           style={[
@@ -86,7 +84,7 @@ const PokemonDetailContent = ({ data, id }: Props) => {
           ]}
         >
           <Text style={styles.favoriteButtonText}>
-            {isFavorite ? "Already Favorite" : "+ Favorite"}
+            {isFavorite ? "Already Favorite" : "+ Favorite This Pokemon"}
           </Text>
         </TouchableOpacity>
       </View>

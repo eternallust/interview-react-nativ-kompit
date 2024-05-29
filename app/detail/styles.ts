@@ -1,4 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const { height } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
   linearGradient: {
@@ -76,7 +78,6 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingTop: 80,
-    paddingBottom: 20,
   },
   sectionTitle: {
     fontSize: 20,
@@ -126,14 +127,12 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   favoriteButton: {
-    bottom: 0,
-    position: "absolute",
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
     padding: 12,
     borderRadius: 12,
-    marginBottom: 12,
+    marginTop: height * 0.15,
   },
   favoriteButtonText: {
     fontWeight: "bold",

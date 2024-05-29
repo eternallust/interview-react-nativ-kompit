@@ -43,7 +43,7 @@ export default function Detail() {
             <ActivityIndicator size="large" color="#FFA800" />
           </View>
         ) : (
-          <View style={{ flex: 1 }}>
+          <View>
             <PokemonDetailHeader data={data} id={String(id)} />
             <PokemonDetailContent data={data} id={String(id)} />
           </View>

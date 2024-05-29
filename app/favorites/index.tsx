@@ -20,16 +20,7 @@ export default function Home() {
         <Header />
 
         <View style={styles.contentContainer}>
-          <Text
-            style={{
-              fontSize: 24,
-              fontWeight: "bold",
-              color: "white",
-              marginBottom: 12,
-            }}
-          >
-            My Favorite Pokemons
-          </Text>
+          <Text style={styles.title}>My Favorite Pokemons</Text>
           <PokemonList pokemonList={pokemonList} />
         </View>
       </SafeAreaView>

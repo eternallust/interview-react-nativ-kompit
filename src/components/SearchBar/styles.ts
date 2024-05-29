@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
+    marginTop: 12,
     flexDirection: "row",
     width: "100%",
   },
@@ -23,6 +24,12 @@ export const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#FFA800",
+    padding: 10,
+    borderRadius: 5,
+    marginHorizontal: 2,
+  },
+  buttonReset: {
+    backgroundColor: "white",
     padding: 10,
     borderRadius: 5,
   },

@@ -37,8 +37,9 @@ const PokemonList = ({
         <FlatList
           style={{
             flex: 1,
-            paddingBottom: 20,
+            paddingVertical: 20,
           }}
+          showsVerticalScrollIndicator={false}
           data={pokemonList}
           renderItem={({ item, index }: any) => (
             <PokemonCard

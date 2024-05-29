@@ -16,9 +16,9 @@ import {
 
 export default function Home() {
   const { getPokemonList } = usePokemonApi();
-  const [searchPokemon, setSearchPokemon] = useState("");
+  const [searchPokemonText, setSearchPokemonText] = useState("");
 
-  const onSubmit = (input: string) => setSearchPokemon(input);
+  const onSubmit = (input: string) => setSearchPokemonText(input);
 
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isLoading } =
     useInfiniteQuery({
@@ -28,11 +28,12 @@ export default function Home() {
       },
       initialPageParam: "pokemon",
       getNextPageParam: ({ response }) => {
-        if (searchPokemon) {
+        if (searchPokemonText) {
           return null;
         }
         return response.next;
       },
+      staleTime: 300000, // 5 minutes
     });
 
   const pokemonTypeList =
@@ -45,7 +46,7 @@ export default function Home() {
       .flatMap(
         (page: { response: PokemonListResponseType }) => page.response.results
       )
-      .filter((pokemon) => pokemon.name.includes(searchPokemon)) ?? [];
+      .filter((pokemon) => pokemon.name.includes(searchPokemonText)) ?? [];
 
   return (
     <LinearGradient
@@ -54,9 +55,12 @@ export default function Home() {
     >
       <SafeAreaView style={styles.safeAreaView}>
         <Header />
-
         <View style={styles.contentContainer}>
-          <SearchBar onSubmit={onSubmit} reset={() => setSearchPokemon("")} />
+          <SearchBar
+            onSubmit={onSubmit}
+            reset={() => setSearchPokemonText("")}
+            searchPokemonText={searchPokemonText}
+          />
           <PokemonList
             pokemonTypeList={pokemonTypeList}
             pokemonList={pokemonList}

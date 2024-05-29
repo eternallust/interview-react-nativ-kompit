@@ -11,4 +11,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     flex: 1,
   },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "white",
+    marginBottom: 12,
+  },
 });
