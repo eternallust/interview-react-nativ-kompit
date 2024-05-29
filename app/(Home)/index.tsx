@@ -46,7 +46,9 @@ export default function Home() {
       .flatMap(
         (page: { response: PokemonListResponseType }) => page.response.results
       )
-      .filter((pokemon) => pokemon.name.includes(searchPokemonText)) ?? [];
+      .filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(searchPokemonText.toLowerCase())
+      ) ?? [];
 
   return (
     <LinearGradient
