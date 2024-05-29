@@ -12,7 +12,7 @@ import { styles } from "./styles";
 import {
   PokemonListResponseType,
   PokemonTypesType,
-} from "@/src/types/PokemonType";
+} from "@/src/Types/PokemonType";
 
 export default function Home() {
   const { getPokemonList } = usePokemonApi();
@@ -46,9 +46,11 @@ export default function Home() {
       .flatMap(
         (page: { response: PokemonListResponseType }) => page.response.results
       )
-      .filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(searchPokemonText.toLowerCase())
-      ) ?? [];
+      .filter((pokemon, index) => {
+        return pokemon.name
+          .toLowerCase()
+          .includes(searchPokemonText.toLowerCase());
+      }) ?? [];
 
   return (
     <LinearGradient

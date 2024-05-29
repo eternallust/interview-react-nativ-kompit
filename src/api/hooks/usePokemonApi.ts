@@ -4,9 +4,7 @@ import {
   PokemonDetailType,
   PokemonListResponseType,
   PokemonTypesType,
-} from "@/src/types/PokemonType";
-
-// Hook untuk mendapatkan daftar pengguna\
+} from "@/src/Types/PokemonType";
 
 export const usePokemonApi = () => {
   const getPokemonList = async (url: string) => {

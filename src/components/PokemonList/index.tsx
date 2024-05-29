@@ -4,7 +4,8 @@ import { ActivityIndicator, FlatList } from "react-native";
 
 import PokemonCard from "../PokemonCard";
 import { styles } from "./styles";
-import { PokemonSummaryType, PokemonTypesType } from "@/src/types/PokemonType";
+import { PokemonSummaryType, PokemonTypesType } from "@/src/Types/PokemonType"; // Perbaikan casing pada import
+import { getIdFromUrl } from "@/src/utils/utils";
 
 interface Props {
   pokemonList: PokemonSummaryType[];
@@ -43,11 +44,15 @@ const PokemonList = ({
           data={pokemonList}
           renderItem={({ item, index }: any) => (
             <PokemonCard
+              key={index}
               item={item}
-              id={item.id ?? index + 1}
+              id={item.id ?? getIdFromUrl(item.url)}
               backgroundColor={
                 POKEMON_TYPE_COLORS[
-                  String(item.type ?? pokemonTypeList?.[index])
+                  String(
+                    item.type ??
+                      pokemonTypeList?.[Number(getIdFromUrl(item.url)) - 1]
+                  )
                 ]
               }
             />
