@@ -1,84 +1,69 @@
-import React from "react";
-import { Text, Image, View, TextInput, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useInfiniteQuery } from "@tanstack/react-query";
+
 import { usePokemonApi } from "@/src/api/hooks/usePokemonApi";
+import SearchBar from "@/src/components/SearchBar";
+import PokemonList from "@/src/components/PokemonList";
+import Header from "@/src/components/Header";
+import { styles } from "./styles";
+import {
+  PokemonListResponseType,
+  PokemonTypesType,
+} from "@/src/Types/PokemonType";
 
 export default function Home() {
   const { getPokemonList } = usePokemonApi();
-  const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    status,
-  } = useInfiniteQuery({
-    queryKey: ["pokemonList"],
-    queryFn: () => getPokemonList(0),
-    initialPageParam: 0,
-    getNextPageParam: () => null,
-  });
+  const [searchPokemon, setSearchPokemon] = useState("");
 
-  console.log("halah hilih data", data);
+  const onSubmit = (input: string) => setSearchPokemon(input);
+
+  const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isLoading } =
+    useInfiniteQuery({
+      queryKey: ["pokemonList"],
+      queryFn: ({ pageParam }) => {
+        return getPokemonList(pageParam);
+      },
+      initialPageParam: "pokemon",
+      getNextPageParam: ({ response }) => {
+        if (searchPokemon) {
+          return null;
+        }
+        return response.next;
+      },
+    });
+
+  const pokemonTypeList =
+    data?.pages.flatMap(
+      (page: { pokemonTypes: PokemonTypesType }) => page.pokemonTypes
+    ) ?? [];
+
+  const pokemonList =
+    data?.pages
+      .flatMap(
+        (page: { response: PokemonListResponseType }) => page.response.results
+      )
+      .filter((pokemon) => pokemon.name.includes(searchPokemon)) ?? [];
 
   return (
     <LinearGradient
       colors={["#4c669f", "#3b5998", "#192f6a"]}
-      style={{ flex: 1 }}
+      style={styles.linearGradient}
     >
-      <SafeAreaView>
-        <View
-          style={{
-            paddingTop: 12,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Image
-            source={require("../../src/assets/images/pokemon-log.png")}
-            resizeMode="cover"
-            style={{ width: 100, height: 50 }}
-          />
-        </View>
-        <View style={{ paddingHorizontal: 20 }}>
-          <View
-            style={{ paddingVertical: 20, flexDirection: "row", width: "100%" }}
-          >
-            <TextInput
-              placeholder="Masukkan teks di sini..."
-              placeholderTextColor="#999"
-              style={{
-                flex: 1,
-                height: 40,
-                borderColor: "gray",
-                borderWidth: 1,
-                backgroundColor: "white",
-                borderRadius: 10,
-                paddingHorizontal: 10,
-                shadowColor: "#000",
-                shadowOffset: { width: 0, height: 2 },
-                shadowOpacity: 0.1,
-                shadowRadius: 2,
-                elevation: 2,
-              }}
-            />
-            <TouchableOpacity
-              style={{
-                backgroundColor: "#FFA800",
-                padding: 10,
-                borderRadius: 5,
-              }}
-              onPress={() => console.log("Button pressed")}
-            >
-              <Text style={{ color: "white" }}>Kirim</Text>
-            </TouchableOpacity>
-          </View>
-          <TouchableOpacity
-            style={{ height: 120, width: 120, backgroundColor: "#FFA800" }}
+      <SafeAreaView style={styles.safeAreaView}>
+        <Header />
+
+        <View style={styles.contentContainer}>
+          <SearchBar onSubmit={onSubmit} reset={() => setSearchPokemon("")} />
+          <PokemonList
+            pokemonTypeList={pokemonTypeList}
+            pokemonList={pokemonList}
+            hasNextPage={hasNextPage}
+            fetchNextPage={fetchNextPage}
+            isFetchingNextPage={isFetchingNextPage}
+            isLoading={isLoading}
           />
         </View>
       </SafeAreaView>

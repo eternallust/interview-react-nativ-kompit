@@ -25,7 +25,7 @@ export const Colors = {
   },
 };
 
-export const POKEMON_TYPE_COLORS = {
+export const POKEMON_TYPE_COLORS: any = {
   normal: "#A8A878",
   fighting: "#C03028",
   flying: "#A890F0",

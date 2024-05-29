@@ -1,27 +1,33 @@
-import { useQuery } from "@tanstack/react-query";
 import api from "../api";
 import axios from "axios";
+import {
+  PokemonDetailType,
+  PokemonListResponseType,
+  PokemonTypesType,
+} from "@/src/Types/PokemonType";
 
 // Hook untuk mendapatkan daftar pengguna\
 
 export const usePokemonApi = () => {
-  const getPokemonList = async (offset: number | string) => {
-    const response = await api.getPokemonList({
-      params: { offset },
+  const getPokemonList = async (url: string) => {
+    const response: PokemonListResponseType = await api.getPokemonList({
+      params: { url },
     });
 
     const urlPokemonDetail = response.results.map((pokemon: any) =>
       axios.get(pokemon.url)
     );
-    const pokemonDetails = await Promise.all(urlPokemonDetail);
-    const pokemonTypes = pokemonDetails.map(
+    const pokemonDetails: { data: PokemonDetailType }[] = await Promise.all(
+      urlPokemonDetail
+    );
+    const pokemonTypes: PokemonTypesType = pokemonDetails.map(
       (detail) => detail.data.types[0].type.name
     );
     return { response, pokemonTypes };
   };
 
   const getPokemonDetail = async (id: number | string) => {
-    const response = await api.getPokemonDetail({
+    const response: PokemonDetailType = await api.getPokemonDetail({
       params: { id },
     });
     return response;

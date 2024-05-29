@@ -1,13 +1,14 @@
 import { makeApi, Zodios } from "@zodios/core";
 import axiosInstance from "../utils/axiosInstance";
 import { pokemonDetailSchema, pokemonSchema } from "./zodSchemas";
+import { z } from "zod";
 
 const zodApi = makeApi([
   {
     method: "get",
-    path: "pokemon?offset=:offset&limit=10",
+    path: ":url",
     alias: "getPokemonList",
-    response: pokemonSchema,
+    response: z.any(),
   },
   {
     method: "get",
@@ -17,7 +18,7 @@ const zodApi = makeApi([
   },
 ]);
 
-const api = new Zodios("https://pokeapi.co/api/v2/", zodApi, {
+const api = new Zodios(zodApi, {
   axiosInstance,
 });
 
