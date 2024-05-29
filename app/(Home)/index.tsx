@@ -12,7 +12,7 @@ import { styles } from "./styles";
 import {
   PokemonListResponseType,
   PokemonTypesType,
-} from "@/src/Types/PokemonType";
+} from "@/src/types/PokemonType";
 
 export default function Home() {
   const { getPokemonList } = usePokemonApi();

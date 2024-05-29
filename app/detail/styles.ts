@@ -1,6 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-
-const { height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
   linearGradient: {
@@ -111,10 +110,10 @@ export const styles = StyleSheet.create({
     width: 80,
   },
   abilitiesContainer: {
-    marginTop: 12,
     flexDirection: "row",
-    gap: 8,
     flexWrap: "wrap",
+    gap: 8,
+    flex: 1,
   },
   abilityBadge: {
     paddingVertical: 8,
@@ -127,12 +126,15 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   favoriteButton: {
-    width: "100%",
+    marginLeft: 20,
+    bottom: 0,
+    width: width - 40,
     justifyContent: "center",
     alignItems: "center",
     padding: 12,
     borderRadius: 12,
-    marginTop: height * 0.15,
+    position: "absolute",
+    marginBottom: 20,
   },
   favoriteButtonText: {
     fontWeight: "bold",

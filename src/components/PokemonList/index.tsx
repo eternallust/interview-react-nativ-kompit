@@ -4,7 +4,7 @@ import { ActivityIndicator, FlatList } from "react-native";
 
 import PokemonCard from "../PokemonCard";
 import { styles } from "./styles";
-import { PokemonSummaryType, PokemonTypesType } from "@/src/Types/PokemonType";
+import { PokemonSummaryType, PokemonTypesType } from "@/src/types/PokemonType";
 
 interface Props {
   pokemonList: PokemonSummaryType[];

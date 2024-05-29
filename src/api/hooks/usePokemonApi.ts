@@ -4,7 +4,7 @@ import {
   PokemonDetailType,
   PokemonListResponseType,
   PokemonTypesType,
-} from "@/src/Types/PokemonType";
+} from "@/src/types/PokemonType";
 
 // Hook untuk mendapatkan daftar pengguna\
 

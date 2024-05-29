@@ -44,7 +44,6 @@ export const styles = StyleSheet.create({
     textTransform: "capitalize",
   },
   nameText: {
-    fontFamily: "Poppins",
     fontWeight: "bold",
     color: "white",
     fontSize: 16,
