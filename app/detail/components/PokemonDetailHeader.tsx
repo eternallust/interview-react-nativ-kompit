@@ -3,6 +3,7 @@ import { View, Image, Text, Dimensions } from "react-native";
 import { styles } from "../styles";
 import Header from "@/src/components/Header";
 import { PokemonDetailType } from "@/src/Types/PokemonType";
+import { useRouter } from "expo-router";
 
 interface Props {
   data: PokemonDetailType | undefined;
@@ -11,9 +12,10 @@ interface Props {
 
 const PokemonDetailHeader = ({ data, id }: Props) => {
   const { width } = Dimensions.get("window");
+  const router = useRouter();
   return (
     <View style={styles.headerContainer}>
-      <Header />
+      <Header goBack={() => router.push("/(Home)")} />
       <View style={styles.headerContent}>
         <View>
           <Text style={styles.pokemonName}>{data?.name}</Text>

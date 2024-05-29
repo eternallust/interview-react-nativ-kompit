@@ -14,6 +14,7 @@ interface Props {
   fetchNextPage?: () => void;
   isLoading?: boolean;
   isFetchingNextPage?: boolean;
+  id?: string | number;
 }
 
 const PokemonList = ({
@@ -23,7 +24,6 @@ const PokemonList = ({
   fetchNextPage,
   isLoading,
   isFetchingNextPage,
-  pokemonType = "normal",
 }: Props) => {
   return (
     <>
@@ -43,10 +43,10 @@ const PokemonList = ({
           renderItem={({ item, index }: any) => (
             <PokemonCard
               item={item}
-              index={index}
+              id={item.id ?? index + 1}
               backgroundColor={
                 POKEMON_TYPE_COLORS[
-                  String(pokemonTypeList?.[index] ?? pokemonType)
+                  String(item.type ?? pokemonTypeList?.[index])
                 ]
               }
             />

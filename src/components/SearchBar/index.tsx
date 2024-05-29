@@ -22,7 +22,7 @@ const SearchBar = ({ onSubmit, reset }: Props) => {
           rules={{ required: true }}
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
-              placeholder="Masukkan teks di sini..."
+              placeholder="Search Pokemon..."
               placeholderTextColor="#999"
               style={styles.input}
               onBlur={onBlur}
@@ -46,9 +46,11 @@ const SearchBar = ({ onSubmit, reset }: Props) => {
           <Text>Reset</Text>
         </TouchableOpacity>
       </View>
-      {errors.pokemonInput && (
-        <Text style={styles.errorText}>Field ini wajib diisi.</Text>
-      )}
+      <View style={{ height: 26 }}>
+        {errors.pokemonInput && (
+          <Text style={styles.errorText}>Field ini wajib diisi.</Text>
+        )}
+      </View>
     </>
   );
 };

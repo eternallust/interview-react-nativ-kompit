@@ -27,6 +27,7 @@ export interface PokemonSummaryType {
   name: string;
   url?: string;
   id?: string;
+  type?: string;
 }
 
 export interface PokemonDetailType {

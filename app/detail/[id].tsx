@@ -45,7 +45,7 @@ export default function Detail() {
         ) : (
           <View style={{ flex: 1 }}>
             <PokemonDetailHeader data={data} id={String(id)} />
-            <PokemonDetailContent data={data} />
+            <PokemonDetailContent data={data} id={String(id)} />
           </View>
         )}
       </SafeAreaView>

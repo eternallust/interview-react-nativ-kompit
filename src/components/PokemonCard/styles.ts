@@ -2,7 +2,8 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   card: {
-    flex: 1,
+    maxWidth: "48%",
+    flex: 0.5,
     position: "relative",
     flexDirection: "column",
     margin: 4,

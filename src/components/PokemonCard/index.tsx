@@ -6,28 +6,26 @@ import { useRouter } from "expo-router";
 
 interface Props {
   item: PokemonSummaryType;
-  index: number;
   backgroundColor: string;
+  id: string | number;
 }
 
-const PokemonCard = ({ item, index, backgroundColor }: Props) => {
+const PokemonCard = ({ item, backgroundColor, id }: Props) => {
   const router = useRouter();
   return (
     <TouchableOpacity
-      onPress={() => router.push(`/detail/${index + 1}`)}
+      onPress={() => router.push(`/detail/${id}`)}
       style={[styles.card, { backgroundColor: backgroundColor }]}
     >
       <View style={styles.imageContainer}>
         <Image
           source={{
-            uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${
-              index + 1
-            }.png`,
+            uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`,
           }}
           style={styles.image}
         />
       </View>
-      <Text style={styles.indexText}>{`#${index + 1}`}</Text>
+      <Text style={styles.indexText}>{`#${id}`}</Text>
       <Text style={styles.nameText}>{item.name}</Text>
     </TouchableOpacity>
   );
