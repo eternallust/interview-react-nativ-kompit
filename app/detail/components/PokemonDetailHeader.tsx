@@ -2,7 +2,7 @@ import React from "react";
 import { View, Image, Text, Dimensions } from "react-native";
 import { styles } from "../styles";
 import Header from "@/src/components/Header";
-import { PokemonDetailType } from "@/src/types/PokemonType";
+import { PokemonDetailType } from "@/src/Types/PokemonType"; // Perbaikan casing untuk menghindari masalah lint
 import { useRouter } from "expo-router";
 
 interface Props {

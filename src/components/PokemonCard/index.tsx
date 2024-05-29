@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
-import { PokemonSummaryType } from "@/src/types/PokemonType";
+import { PokemonSummaryType } from "@/src/Types/PokemonType";
 import { useRouter } from "expo-router";
 
 interface Props {

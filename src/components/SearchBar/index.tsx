@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TextInput, TouchableOpacity, Text, Image } from "react-native";
+import { View, TextInput, TouchableOpacity, Image } from "react-native";
 import { Controller, useForm } from "react-hook-form";
 import { styles } from "./styles";
 

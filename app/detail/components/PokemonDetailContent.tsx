@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import React from "react";
+import { View, Text } from "react-native";
 import { styles } from "../styles";
-import { PokemonDetailType } from "@/src/types/PokemonType";
+import { PokemonDetailType } from "@/src/Types/PokemonType"; // Perbaikan casing untuk konsistensi
 import { POKEMON_TYPE_COLORS } from "@/src/constants/Colors";
 import SpriteCard from "@/src/components/SpriteCard";
 import AbilityBadge from "@/src/components/AbilityBadge";
-
 interface Props {
   data: PokemonDetailType | undefined;
   id: number | string;

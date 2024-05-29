@@ -1,6 +1,6 @@
 import { makeApi, Zodios } from "@zodios/core";
 import axiosInstance from "../utils/axiosInstance";
-import { pokemonDetailSchema, pokemonSchema } from "./zodSchemas";
+import { pokemonDetailSchema } from "./zodSchemas";
 import { z } from "zod";
 
 const zodApi = makeApi([
